@@ -1,0 +1,44 @@
+<?php
+// includes/header.php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+// Determine base path for CSS and links
+$basePath = '';
+// Check if the current script is in the admin directory
+if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
+    $basePath = '../'; // Go up one level for admin pages
+}
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
+</head>
+<body class="bg-gray-100 text-gray-800 font-sans">
+    <nav class="bg-blue-600 p-4 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="<?php echo $basePath; ?>index.php" class="text-xl font-bold hover:text-blue-200">Voting System</a>
+            <div>
+                <?php if (is_logged_in()): ?>
+                    <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['user_email']); ?>!</span>
+                    <a href="<?php echo $basePath; ?>logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</a>
+                <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
+                     <a href="<?php echo $basePath; ?>logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Admin Logout</a>
+                <?php elseif (strpos($_SERVER['PHP_SELF'], '/admin/') === false): // Show login only if not admin and not logged in ?>
+                    <a href="<?php echo $basePath; ?>login.php" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</a>
+                <?php endif; ?>
+                 <?php if (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false): ?>
+                    <a href="index.php" class="hover:text-blue-200 px-2">Dashboard</a>
+                    <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
+                    <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
+                    <a href="manage_users.php" class="hover:text-blue-200 px-2">Users</a>
+                <?php endif; ?>
+            </div>
+        </div>
+    </nav>
+    <div class="container mx-auto p-4 mt-6">

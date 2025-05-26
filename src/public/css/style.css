@@ -1,0 +1,11 @@
+/* public/css/style.css */
+/* You can add custom CSS rules here if Tailwind isn't enough */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.container {
+    flex: 1;
+}
