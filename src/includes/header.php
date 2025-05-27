@@ -28,7 +28,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['user_email']); ?>!</span>
                     <a href="<?php echo $basePath; ?>logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</a>
                 <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
-                     <a href="<?php echo $basePath; ?>logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Admin Logout</a>
+                     <a href="<?php echo $basePath; ?>admin/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Admin Logout</a>
                 <?php elseif (strpos($_SERVER['PHP_SELF'], '/admin/') === false): // Show login only if not admin and not logged in ?>
                     <a href="<?php echo $basePath; ?>login.php" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</a>
                 <?php endif; ?>

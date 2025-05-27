@@ -24,12 +24,14 @@ function sanitize_input($data) {
 }
 
 function is_admin_logged_in() {
-    return isset($_SESSION['admin_logged_in']) && $_SESSION['admin_logged_in'] === true;
+    return isset($_SESSION['admin_logged_in']) 
+        && $_SESSION['admin_logged_in'] === true
+        && $_SESSION['admin_user_id'] > 0;
 }
 
 function require_admin_login() {
     if (!is_admin_logged_in()) {
-        header('Location: login.php'); // Admin login might be different, e.g., admin/login.php
+        header('Location: admin/login.php');
         exit;
     }
 }
