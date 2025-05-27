@@ -84,6 +84,7 @@ require_once '../includes/header.php';
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['id']; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?php echo htmlspecialchars($row['username']); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        echo "<script>console.log('Is Active: " . $row['is_active'] . "' );</script>";
                         <?php $row['is_active'] == TRUE
                             ? '<span class="text-green-600 hover:text-green-900"><i class="bx bx-circle"></i></span>'
                             : '<span class="text-red-600 hover:text-red-900"><i class="bx bx-circle"></i></span>'; ?>
