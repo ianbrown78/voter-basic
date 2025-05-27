@@ -1,7 +1,7 @@
 # Apache htaccess to mask individual php files to URLs.
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /public/
+    #RewriteBase /public/
 
     # Redirect non-public requests to public directory (optional, good for security)
     # RewriteCond %{REQUEST_URI} !^/public/
