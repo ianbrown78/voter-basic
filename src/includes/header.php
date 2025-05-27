@@ -35,6 +35,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
                 <?php endif; ?>
                  <?php if (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false): ?>
                     <a href="index.php" class="hover:text-blue-200 px-2">Dashboard</a>
+                    <a href="manage_admins.php" class="hover:text-blue-200 px-2">Admins</a>
                     <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
                     <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
                     <a href="manage_users.php" class="hover:text-blue-200 px-2">Users</a>
