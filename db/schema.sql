@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
 -- Table structure for table `users`
 -- --------------------------------------------------------
-CREATE TABLE `users` (
+CREATE TABLE IF NOT EXISTS `users` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `email` VARCHAR(255) NOT NULL UNIQUE,
   `name` VARCHAR(255) DEFAULT NULL, -- Optional: if you want to store user names
@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `admins` (
 -- --------------------------------------------------------
 -- Table structure for table `elections`
 -- --------------------------------------------------------
-CREATE TABLE `elections` (
+CREATE TABLE IF NOT EXISTS `elections` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `title` VARCHAR(255) NOT NULL,
   `description` TEXT DEFAULT NULL,
@@ -45,7 +45,7 @@ CREATE TABLE `elections` (
 -- --------------------------------------------------------
 -- Table structure for table `candidates`
 -- --------------------------------------------------------
-CREATE TABLE `candidates` (
+CREATE TABLE IF NOT EXISTS `candidates` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `election_id` INT NOT NULL,
   `name` VARCHAR(255) NOT NULL,
@@ -61,7 +61,7 @@ CREATE TABLE `candidates` (
 -- --------------------------------------------------------
 -- Table structure for table `votes`
 -- --------------------------------------------------------
-CREATE TABLE `votes` (
+CREATE TABLE IF NOT EXISTS `votes` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `user_id` INT NOT NULL,
   `election_id` INT NOT NULL,
