@@ -17,6 +17,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voting System</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans">
