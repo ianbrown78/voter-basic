@@ -83,12 +83,7 @@ require_once '../includes/header.php';
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['id']; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?php echo htmlspecialchars($row['username']); ?></td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        echo "<script>console.log('Is Active: " . $row['is_active'] . "' );</script>";
-                        <?php $row['is_active'] == TRUE
-                            ? '<span class="text-green-600 hover:text-green-900"><i class="bx bx-circle"></i></span>'
-                            : '<span class="text-red-600 hover:text-red-900"><i class="bx bx-circle"></i></span>'; ?>
-                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['is_active'] ? '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span>' : '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No</span>'; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo date('Y-m-d H:i', strtotime($row['created_at'])); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <form action="manage_admins.php" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this admin? This will also delete all their votes.');">
