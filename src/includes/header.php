@@ -20,7 +20,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
 </head>
-<body class="bg-gray-100 text-gray-800 font-sans">
+<body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
     <nav class="bg-blue-600 p-4 text-white shadow-md">
         <div class="container mx-auto flex justify-between items-center">
             <a href="<?php echo $basePath; ?>index.php" class="text-xl font-bold hover:text-blue-200">Voting System</a>

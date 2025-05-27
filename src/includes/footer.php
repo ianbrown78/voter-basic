@@ -2,7 +2,7 @@
 // includes/footer.php
 ?>
     </div>
-    <footer class="w-full h-64 bg-gray-800 static bottom-0 text-white text-center p-4">
+    <footer class="sticky top-[100vh] bg-gray-800 text-white text-center p-4 mt-auto">
         <p>&copy; <?php echo date("Y"); ?> Flaxton Consulting. All rights reserved.</p>
     </footer>
 </body>
