@@ -4,8 +4,8 @@
     RewriteBase /public/
 
     # Redirect non-public requests to public directory (optional, good for security)
-    RewriteCond %{REQUEST_URI} !^/public/
-    RewriteRule ^(.*)$ public/$1 [L,QSA]
+    # RewriteCond %{REQUEST_URI} !^/public/
+    # RewriteRule ^(.*)$ public/$1 [L,QSA]
 
     # Basic front controller pattern if you want cleaner URLs (more advanced)
     RewriteCond %{REQUEST_FILENAME} !-f
