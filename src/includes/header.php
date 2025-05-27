@@ -38,7 +38,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
                     <a href="manage_admins.php" class="hover:text-blue-200 px-2">Admins</a>
                     <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
                     <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
-                    <a href="manage_users.php" class="hover:text-blue-200 px-2">Users</a>
+                    <a href="manage_users.php" class="hover:text-blue-200 px-2">Voters</a>
                 <?php endif; ?>
             </div>
         </div>

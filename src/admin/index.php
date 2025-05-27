@@ -22,7 +22,7 @@ require_once '../includes/header.php'; // Admin header will adjust paths
             <p>Add and edit candidates for each election.</p>
         </a>
         <a href="manage_users.php" class="block p-6 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2">Manage Users</h2>
+            <h2 class="text-xl font-semibold mb-2">Manage Voters</h2>
             <p>View and manage the list of eligible voters.</p>
         </a>
         <a href="manage_admins.php" class="block p-6 bg-purple-500 text-white rounded-lg shadow hover:bg-pueple-600 transition-colors">
@@ -34,14 +34,14 @@ require_once '../includes/header.php'; // Admin header will adjust paths
         <h3 class="text-xl font-semibold text-gray-700 mb-3">Quick Stats</h3>
         <?php
         try {
-            $total_users = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
+            $total_voters = $pdo->query("SELECT COUNT(*) FROM users")->fetchColumn();
             $total_elections = $pdo->query("SELECT COUNT(*) FROM elections")->fetchColumn();
             $active_elections = $pdo->query("SELECT COUNT(*) FROM elections WHERE is_active = TRUE AND NOW() BETWEEN start_date AND end_date")->fetchColumn();
             $total_votes = $pdo->query("SELECT COUNT(*) FROM votes")->fetchColumn();
             $total_admins = $pdo->query("SELECT COUNT(*) FROM admins WHERE is_active = TRUE")->fetchColumn();
         ?>
         <ul class="space-y-2 text-gray-600">
-            <li>Total Registered Voters: <span class="font-bold text-blue-600"><?php echo $total_users; ?></span></li>
+            <li>Total Registered Voters: <span class="font-bold text-blue-600"><?php echo $total_voters; ?></span></li>
             <li>Total Elections Created: <span class="font-bold text-blue-600"><?php echo $total_elections; ?></span></li>
             <li>Currently Active Elections: <span class="font-bold text-green-600"><?php echo $active_elections; ?></span></li>
             <li>Total Votes Cast (All Time): <span class="font-bold text-blue-600"><?php echo $total_votes; ?></span></li>
