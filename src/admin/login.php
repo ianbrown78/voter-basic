@@ -15,12 +15,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['username']) && isset($_POST['password'])) {
         $username = sanitize_input($_POST['username']);
         $password = sanitize_input($_POST['password']);
+        $hash_pw = hash_password($password);
+        echo "<script>console.log('Debug Password: " . $hash_pw . "' );</script>";
 
         try {
             $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = 1");
-            $stmt->execute([$username, $password]);
+            $stmt->execute([$username, $hash_pw]);
             $admin = $stmt->fetch();
-            echo "<script>console.log('Debug Admin: " . $admin . "');</script>";
 
             if ($admin) {
                 $_SESSION['admin_logged_in'] = true;
