@@ -19,11 +19,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>console.log('Debug Password: " . $hash_pw . "' );</script>";
 
         try {
-            $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = TRUE");
+            $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND is_active = TRUE");
             $stmt->execute([$username, $hash_pw]);
             $admin = $stmt->fetch();
 
-            if ($admin) {
+            if ($admin && password_verify($hash_pw, $admin['password'])) {
                 echo "<script>console.log('Admin is set' );</script>";
                 echo "<script>console.log('Admin ID: " . $admin['id'] . "' );</script>";
                 echo "<script>console.log('Admin ID: " . $admin['username'] . "' );</script>";
