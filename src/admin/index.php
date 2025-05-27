@@ -56,4 +56,3 @@ require_once '../includes/header.php'; // Admin header will adjust paths
 </div>
 
 <?php require_once '../includes/footer.php'; ?>
-// ?>
