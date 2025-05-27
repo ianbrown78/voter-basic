@@ -74,6 +74,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out">Login as Voter</button>
             </div>
         </form>
+
+        <hr class="my-8 border-gray-300">
+
+        <p class="text-xs text-gray-500 mt-4 text-center"><a href="<?php echo $basePath; ?>admin/login.php">Administration Login</a></p>
+
     </div>
 </body>
 </html>
