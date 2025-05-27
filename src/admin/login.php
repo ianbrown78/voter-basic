@@ -16,11 +16,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = sanitize_input($_POST['username']);
         $password = sanitize_input($_POST['password']);
 
-        echo "<script>console.log('Debug Username: " . $username . "');</script>";
-        echo "<script>console.log('Debug Password: " . $password . "');</script>";
-
         try {
-            $stmt = $pdo->prepare("SELECT id, email FROM admins WHERE username = ? AND password = ? AND is_active = 1");
+            $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = 1");
             $stmt->execute([$username, $password]);
             $admin = $stmt->fetch();
             echo "<script>console.log('Debug Admin: " . $admin . "');</script>";
