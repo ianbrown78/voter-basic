@@ -53,6 +53,10 @@ require_once '../includes/header.php'; // Admin header will adjust paths
         }
         ?>
     </div>
+    <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
+        <h3 class="text-xl font-semibold text-gray-700 mb-3">Results</h3>
+        <a href="results.php"><i class="bx bx-newspaper"></i></a>
+    </div>
 </div>
 
 <?php require_once '../includes/footer.php'; ?>

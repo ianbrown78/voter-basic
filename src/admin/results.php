@@ -1,12 +1,12 @@
 <?php
-// public/results.php
+// admin/results.php
 // This is an optional page. For true anonymity and fairness, results should typically
 // only be available after an election has concluded and possibly only to administrators.
 // This is a very basic example.
 
 require_once '../config/database.php';
 require_once '../includes/functions.php';
-// require_login(); // Or admin login if results are restricted
+require_admin_login();
 
 require_once '../includes/header.php';
 
