@@ -128,7 +128,7 @@ require_once '../includes/header.php';
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo date('Y-m-d H:i', strtotime($row['end_date'])); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['is_active'] ? '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span>' : '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No</span>'; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                        <a href="manage_elections.php?edit_id=<?php echo $row['id']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
+                        <a href="manage_elections.php?edit_id=<?php echo $row['id']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-2"><i class="bx bx-edit"></i></a>
                         <form action="manage_elections.php" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this election? This will also delete all associated candidates and votes.');">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_election" class="text-red-600 hover:text-red-900"><i class="bx bx-trash-x"></i></button>
