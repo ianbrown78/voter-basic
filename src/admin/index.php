@@ -30,7 +30,7 @@ require_once '../includes/header.php'; // Admin header will adjust paths
             <p>View and manage the list of administrators.</p>
         </a>
     </div>
-     <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
+    <div class="mt-8 p-6 border border-gray-200 rounded-lg bg-gray-50">
         <h3 class="text-xl font-semibold text-gray-700 mb-3">Quick Stats</h3>
         <?php
         try {
