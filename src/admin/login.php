@@ -22,9 +22,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = TRUE");
             $stmt->execute([$username, $hash_pw]);
             $admin = $stmt->fetch();
-            echo "<script>console.log('Debug Password: " . print_r($admin) . "' );</script>";
 
             if ($admin) {
+                echo "<script>console.log('Admin is set' );</script>";
+                echo "<script>console.log('Admin ID: " . $admin['id'] . "' );</script>";
+                echo "<script>console.log('Admin ID: " . $admin['username'] . "' );</script>";
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['admin_id'] = $admin['id'];
                 $_SESSION['username'] = $admin['username'];
@@ -32,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 header('Location: index.php');
                 exit;
             } else {
+                echo "<script>console.log('Admin is NOT set' );</script>";
                 $error_message = "Username and/or password incorrect";
             }
         } catch (PDOException $e) {
