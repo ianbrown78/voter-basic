@@ -19,9 +19,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>console.log('Debug Password: " . $hash_pw . "' );</script>";
 
         try {
-            $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = 1");
+            $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND password = ? AND is_active = TRUE");
             $stmt->execute([$username, $hash_pw]);
             $admin = $stmt->fetch();
+            echo "<script>console.log('Debug Password: " . print_r($admin) . "' );</script>";
 
             if ($admin) {
                 $_SESSION['admin_logged_in'] = true;
