@@ -1,0 +1,29 @@
+name: Deploy to Development
+
+on:
+  push:
+    branches:
+    - master
+env:
+  ROBOTS: ${{ vars.DEV_ROBOTS }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+
+    steps:
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v4
+      with:
+        submodules: 'true'
+
+    - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      with:
+        local-dir: './src/'
+        server-dir: './domains/vote.ianbrown.id.au/public_html/'
+        server: ${{ secrets.ftp_hostname }}
+        username: ${{ secrets.ftp_username }}
+        password: ${{ secrets.ftp_password }}
