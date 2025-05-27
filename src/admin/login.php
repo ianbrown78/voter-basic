@@ -3,8 +3,8 @@
 require_once '../config/database.php';
 require_once '../includes/functions.php';
 
-if (is_logged_in()) {
-    header('Location: index.php');
+if (is_admin_logged_in()) {
+    header('Location: /admin/index.php');
     exit;
 }
 
@@ -27,10 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<script>console.log('Admin ID: " . $admin['id'] . "' );</script>";
                 echo "<script>console.log('Admin ID: " . $admin['username'] . "' );</script>";
                 $_SESSION['admin_logged_in'] = true;
-                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_user_id'] = $admin['id'];
                 $_SESSION['username'] = $admin['username'];
                 
-                header('Location: index.php');
+                header('Location: /admin/index.php');
                 exit;
             } else {
                 echo "<script>console.log('Admin is NOT set' );</script>";
