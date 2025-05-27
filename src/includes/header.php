@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 // Determine base path for CSS and links
 $basePath = '';
 // Check if the current script is in the admin directory
-if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false) {
+if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/public/') !== false) {
     $basePath = '../'; // Go up one level for admin pages
 }
 ?>

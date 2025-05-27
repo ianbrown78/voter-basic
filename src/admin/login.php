@@ -8,6 +8,9 @@ if (is_admin_logged_in()) {
     exit;
 }
 
+// Determine base path for CSS and links
+$basePath = '../';
+
 $error_message = '';
 $success_message = '';
 
@@ -47,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Voting System</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="/public/css/style.css">
+    <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
