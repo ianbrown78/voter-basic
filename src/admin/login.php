@@ -16,28 +16,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $username = sanitize_input($_POST['username']);
         $password = sanitize_input($_POST['password']);
 
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error_message = "Invalid email format.";
-        } else {
-            try {
-                $stmt = $pdo->prepare("SELECT id, email FROM admins WHERE username = ? AND password = ? AND is_active = 1");
-                $stmt->execute([$username, $password]);
-                $admin = $stmt->fetch();
+        try {
+            $stmt = $pdo->prepare("SELECT id, email FROM admins WHERE username = ? AND password = ? AND is_active = 1");
+            $stmt->execute([$username, $password]);
+            $admin = $stmt->fetch();
 
-                if ($admin) {
-                    $_SESSION['admin_logged_in'] = true;
-                    $_SESSION['admin_id'] = $admin['id'];
-                    $_SESSION['username'] = $admin['username'];
-                    
-                    header('Location: index.php');
-                    exit;
-                } else {
-                    $error_message = "Username and/or password incorrect";
-                }
-            } catch (PDOException $e) {
-                $error_message = "Database error. Please try again later.";
-                // Log error: error_log($e->getMessage());
+            if ($admin) {
+                $_SESSION['admin_logged_in'] = true;
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['username'] = $admin['username'];
+                
+                header('Location: index.php');
+                exit;
+            } else {
+                $error_message = "Username and/or password incorrect";
             }
+        } catch (PDOException $e) {
+            $error_message = "Database error. Please try again later.";
+            // Log error: error_log($e->getMessage());
         }
     }
 }
@@ -55,7 +51,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full">
-        <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Voter Login</h1>
         
         <?php if ($error_message): ?>
             <div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg"><?php echo htmlspecialchars($error_message); ?></div>
