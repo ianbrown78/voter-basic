@@ -3,6 +3,8 @@
     RewriteEngine On
     #RewriteBase /public/
 
+    RewriteRule ^$ /public/index.php [L]
+
     # Redirect non-public requests to public directory (optional, good for security)
     # RewriteCond %{REQUEST_URI} !^/public/
     # RewriteRule ^(.*)$ public/$1 [L,QSA]
@@ -13,7 +15,7 @@
     RewriteRule ^ index.php [L]
 </IfModule>
 
-DirectoryIndex /public/index.php
+#DirectoryIndex /public/index.php
 
 # Disable directory browsing
 Options -Indexes
