@@ -91,7 +91,7 @@ require_once '../includes/header.php';
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                         <form action="manage_users.php" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this user? This will also delete all their votes.');">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_user" class="text-red-600 hover:text-red-900">Delete</button>
+                            <button type="submit" name="delete_user" class="text-red-600 hover:text-red-900"><i class="bx bx-trash-x"></i></button>
                         </form>
                     </td>
                 </tr>

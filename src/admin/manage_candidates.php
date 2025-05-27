@@ -120,7 +120,7 @@ require_once '../includes/header.php';
                         <a href="manage_candidates.php?edit_id=<?php echo $row['id']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-2">Edit</a>
                         <form action="manage_candidates.php" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this candidate?');">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
-                            <button type="submit" name="delete_candidate" class="text-red-600 hover:text-red-900">Delete</button>
+                            <button type="submit" name="delete_candidate" class="text-red-600 hover:text-red-900"><i class="bx bx-trash-x"></i></button>
                         </form>
                     </td>
                 </tr>
