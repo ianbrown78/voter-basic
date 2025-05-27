@@ -15,6 +15,17 @@ CREATE TABLE `users` (
 -- - For a "known list of email addresses", you would pre-populate this table.
 
 -- --------------------------------------------------------
+-- Table structure for table `admins`
+-- --------------------------------------------------------
+CREATE TABLE IF NOT EXISTS `admins` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `username` VARCHAR(50) NOT NULL UNIQUE,
+  `password` VARCHAR(255) NOT NULL,
+  `is_active` BOOLEAN DEFAULT TRUE, -- To easily enable/disable admins
+  `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
 -- Table structure for table `elections`
 -- --------------------------------------------------------
 CREATE TABLE `elections` (

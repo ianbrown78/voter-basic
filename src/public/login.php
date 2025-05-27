@@ -37,21 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 // Log error: error_log($e->getMessage());
             }
         }
-    } elseif (isset($_POST['admin_username']) && isset($_POST['admin_password'])) {
-        // Basic Admin Login (replace with a more secure mechanism for production)
-        $admin_username = sanitize_input($_POST['admin_username']);
-        $admin_password = $_POST['admin_password']; // In real app, hash and compare
-
-        // IMPORTANT: This is a placeholder for admin authentication.
-        // For a real system, use a dedicated admin users table with hashed passwords.
-        if ($admin_username === 'admin' && $admin_password === 'password123') {
-            $_SESSION['admin_logged_in'] = true;
-            $_SESSION['admin_username'] = $admin_username;
-            header('Location: ../admin/index.php');
-            exit;
-        } else {
-            $error_message = "Invalid admin credentials.";
-        }
     }
 }
 
@@ -86,24 +71,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out">Login as Voter</button>
             </div>
         </form>
-        
-        <hr class="my-8 border-gray-300">
-
-        <h2 class="text-2xl font-bold mb-6 text-center text-gray-700">Admin Login</h2>
-         <form action="login.php" method="POST" class="space-y-6">
-            <div>
-                <label for="admin_username" class="block text-sm font-medium text-gray-700 mb-1">Admin Username:</label>
-                <input type="text" name="admin_username" id="admin_username" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="admin">
-            </div>
-            <div>
-                <label for="admin_password" class="block text-sm font-medium text-gray-700 mb-1">Admin Password:</label>
-                <input type="password" name="admin_password" id="admin_password" required class="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-150" placeholder="password">
-            </div>
-            <div>
-                <button type="submit" class="w-full bg-gray-600 hover:bg-gray-700 text-white font-bold py-3 px-4 rounded-lg shadow-md hover:shadow-lg transition duration-150 ease-in-out">Login as Admin</button>
-            </div>
-        </form>
-        <p class="text-xs text-gray-500 mt-4 text-center">Admin login is for system administrators only.</p>
     </div>
 </body>
 </html>
