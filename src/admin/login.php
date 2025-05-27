@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         try {
             $stmt = $pdo->prepare("SELECT * FROM admins WHERE username = ? AND is_active = TRUE");
-            $stmt->execute([$username, $hash_pw]);
+            $stmt->execute([$username]);
             $admin = $stmt->fetch();
 
             if ($admin && password_verify($password, $admin['password'])) {
