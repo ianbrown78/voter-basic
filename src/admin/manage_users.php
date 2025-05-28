@@ -46,22 +46,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
                     // $stmt->bind_param($email, $name);
                     
-                    while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
-                        if (count($getData) != 2) {
-                            $error = "Invalid data structure."
-                            exit;
-                        }
+                    // while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
+                    //     if (count($getData) != 2) {
+                    //         $error = "Invalid data structure."
+                    //         exit;
+                    //     }
 
-                        if (in_array($getData[0], voters)) {
-                            $error = "Voter with email " . $getData[0] . "already exists";
-                            continue;
-                        }
+                    //     if (in_array($getData[0], voters)) {
+                    //         $error = "Voter with email " . $getData[0] . "already exists";
+                    //         continue;
+                    //     }
 
-                        // $email = $getData[0];
-                        // $name = $getData[1];
+                    //     // $email = $getData[0];
+                    //     // $name = $getData[1];
 
-                        // $stmt->execute([$email, $name]);
-                    }
+                    //     // $stmt->execute([$email, $name]);
+                    // }
 
                     fclose($csv);
                     // Tell our users we are good.
