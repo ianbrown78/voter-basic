@@ -33,8 +33,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (isset($_POST['bulk_users'])) {
         if (isset($_FILES['csv'])) {
             if ($_FILES["file"]["error"] > 0) {
-                echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+                $error = $_FILES["file"]["error"];
             } else {
+                $message = "Successfully uploaded the file";
                 // Cycle through each line of the sheet and insert the voters into the table
             }
         }
