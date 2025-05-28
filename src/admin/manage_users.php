@@ -37,14 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error = $_FILES["csv"]["error"];
             } else {
                 $filename = $_FILES["file"]["tmp_name"];
-                // $result = importCSV($filename);
-
-                // if ($result) {
-                //     // Tell our users we are good.
-                //     $message = "Successfully inserted bulk users list";
-                // } else {
-                //     $error = "An error occurred";
-                // }
             }
         }
     } elseif (isset($_POST['delete_user'])) {
