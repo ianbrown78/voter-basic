@@ -50,13 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Fetch election to edit if ID is provided
-$election_to_edit = null;
+// Fetch admin to edit if ID is provided
+$admin_to_edit = null;
 if (isset($_GET['edit_id'])) {
     $edit_id = (int)$_GET['edit_id'];
     $stmt = $pdo->prepare("SELECT * FROM admins WHERE id = ?");
     $stmt->execute([$edit_id]);
-    $election_to_edit = $stmt->fetch();
+    $admin_to_edit = $stmt->fetch();
 }
 
 require_once '../includes/header.php';
@@ -68,29 +68,29 @@ require_once '../includes/header.php';
     <?php if ($error): ?><div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
 
     <form action="manage_admins.php" method="POST" class="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-4">
-        <h2 class="text-xl font-semibold text-gray-700"><?php echo $election_to_edit ? 'Edit' : 'Add New'; ?> Admin</h2>
+        <h2 class="text-xl font-semibold text-gray-700"><?php echo $admin_to_edit ? 'Edit' : 'Add New'; ?> Admin</h2>
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
-            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($election_to_edit['username'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($admin_to_edit['username'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
-            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($election_to_edit['password'] ?? ''); ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($admin_to_edit['password'] ?? ''); ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="first_name" class="block text-sm font-medium text-gray-700">First Name:</label>
-            <input type="text" name="first_name" id="first_name" value="<?php echo htmlspecialchars($election_to_edit['first_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="first_name" id="first_name" value="<?php echo htmlspecialchars($admin_to_edit['first_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name:</label>
-            <input type="text" name="last_name" id="last_name" value="<?php echo htmlspecialchars($election_to_edit['last_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="last_name" id="last_name" value="<?php echo htmlspecialchars($admin_to_edit['last_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div class="flex items-center">
-            <input type="checkbox" name="is_active" id="is_active" value="1" <?php echo ($election_to_edit && $election_to_edit['is_active']) || !$election_to_edit ? 'checked' : ''; ?> class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+            <input type="checkbox" name="is_active" id="is_active" value="1" <?php echo ($admin_to_edit && $admin_to_edit['is_active']) || !$admin_to_edit ? 'checked' : ''; ?> class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
             <label for="is_active" class="ml-2 block text-sm text-gray-900">Is Active?</label>
         </div>
         <div>
-            <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Add Admin</button>
+            <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"><?php echo $admin_to_edit ? 'Edit' : 'Add' ?> Admin</button>
         </div>
     </form>
 
