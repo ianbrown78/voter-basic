@@ -10,6 +10,6 @@ body {
     flex: 1;
 }
 
-a i {
+.button-icon-align i {
     vertical-align: middle;
 }

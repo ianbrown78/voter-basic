@@ -27,7 +27,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
             <div>
                 <?php if (is_logged_in()): ?>
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['user_email']); ?>!</span>
-                    <a href="<?php echo $basePath; ?>public/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="<?php echo $basePath; ?>public/logout.php" class="button-icon-align bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                         <i class="bx bx-door-open"></i> Logout
                     </a>
                 <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
@@ -37,7 +37,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
                     <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
                     <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
                     <a href="manage_users.php" class="hover:text-blue-200 px-2">Voters</a>
-                    <a href="<?php echo $basePath; ?>admin/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                    <a href="<?php echo $basePath; ?>admin/logout.php" class="button-icon-align bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                         <i class="bx bx-door-open"></i> Logout
                     </a>
                 <?php elseif (strpos($_SERVER['PHP_SELF'], '/admin/') === false): // Show login only if not admin and not logged in ?>
