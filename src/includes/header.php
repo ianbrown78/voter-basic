@@ -27,19 +27,21 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
             <div>
                 <?php if (is_logged_in()): ?>
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['user_email']); ?>!</span>
-                    <a href="<?php echo $basePath; ?>public/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Logout</a>
+                    <a href="<?php echo $basePath; ?>public/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="bx bx-door-open"></i> Logout
+                    </a>
                 <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>!</span>
-                     <a href="<?php echo $basePath; ?>admin/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Admin Logout</a>
-                <?php elseif (strpos($_SERVER['PHP_SELF'], '/admin/') === false): // Show login only if not admin and not logged in ?>
-                    <a href="<?php echo $basePath; ?>login.php" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</a>
-                <?php endif; ?>
-                 <?php if (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false): ?>
                     <a href="index.php" class="hover:text-blue-200 px-2">Dashboard</a>
                     <a href="manage_admins.php" class="hover:text-blue-200 px-2">Admins</a>
                     <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
                     <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
                     <a href="manage_users.php" class="hover:text-blue-200 px-2">Voters</a>
+                    <a href="<?php echo $basePath; ?>admin/logout.php" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+                        <i class="bx bx-door-open"></i> Logout
+                    </a>
+                <?php elseif (strpos($_SERVER['PHP_SELF'], '/admin/') === false): // Show login only if not admin and not logged in ?>
+                    <a href="<?php echo $basePath; ?>login.php" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Login</a>
                 <?php endif; ?>
             </div>
         </div>
