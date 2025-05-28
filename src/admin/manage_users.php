@@ -8,6 +8,11 @@ $message = '';
 $error = '';
 
 function importVoters($filename) {
+    if (empty($filename)) {
+        $error = "CSV Filename provided does not exist: " . $filename;
+        return;
+    }
+
     $csv_file = fopen($filename, 'r');
     fgetcsv($csv_file);
     
