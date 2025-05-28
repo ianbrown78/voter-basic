@@ -36,35 +36,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
-                try {
-                    // Get all the voters so we can check for dupes
-                    $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users");
-                    $voters = $stmt_check->execute();
+                // try {
+                //     // Get all the voters so we can check for dupes
+                //     $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users");
+                //     $voters = $stmt_check->execute();
 
-                    $csv = fopen($_FILES['csv']['tmp_name'], 'r');
+                //     $csv = fopen($_FILES['csv']['tmp_name'], 'r');
                     
-                    // Cycle through each line of the sheet and insert the voters into the table
-                    $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
-                    $stmt->bind_param($email, $name);
+                //     // Cycle through each line of the sheet and insert the voters into the table
+                //     $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
+                //     $stmt->bind_param($email, $name);
                     
-                    while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
-                        if (count($getData) != 2) {
-                            $error = "Invalid data structure."
-                            exit;
-                        }
+                //     while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
+                //         if (count($getData) != 2) {
+                //             $error = "Invalid data structure."
+                //             exit;
+                //         }
 
-                        $email = $getData[0];
-                        $name = $getData[1];
+                //         $email = $getData[0];
+                //         $name = $getData[1];
 
-                        $stmt->execute([$email, $name]);
-                    }
+                //         $stmt->execute([$email, $name]);
+                //     }
 
-                    fclose($csv);
-                    // Tell our users we are good.
-                    $message` = "Successfully inserted bulk users list";
-                } catch (PDOException $e) {
-                    $error = "Database error: " . $e->getMessage();
-                }
+                //     fclose($csv);
+                //     // Tell our users we are good.
+                //     $message` = "Successfully inserted bulk users list";
+                // } catch (PDOException $e) {
+                //     $error = "Database error: " . $e->getMessage();
+                // }
             }
         }
     } elseif (isset($_POST['delete_user'])) {
