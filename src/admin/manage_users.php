@@ -36,37 +36,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
-                try {
-                    // Get all the voters so we can check for dupes
-                    $voters = $pdo->prepare("SELECT email FROM users")->execute();
+                $filename = $_FILES["file"]["tmp_name"];
+                $result = importCSV($filename);
 
-                    $csv = fopen($_FILES['csv']['tmp_name'], 'r');
-                    
-                    // Cycle through each line of the sheet and insert the voters into the table                   
-                    // while(($getData = fgetcsv($csv, 10000, ",")) !== FALSE) {
-                    //     $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
-
-                    //     if (count($getData) != 2) {
-                    //         $error = "Invalid data structure."
-                    //         exit;
-                    //     }
-
-                    //     if (in_array($getData[0], voters)) {
-                    //         $error = "Voter with email " . $getData[0] . "already exists";
-                    //         continue;
-                    //     }
-
-                    //     // $email = $getData[0];
-                    //     // $name = $getData[1];
-
-                    //     // $stmt->execute([$email, $name]);
-                    // }
-
-                    fclose($csv);
+                if ($result) {
                     // Tell our users we are good.
                     $message = "Successfully inserted bulk users list";
-                } catch (PDOException $e) {
-                    $error = "Database error: " . $e->getMessage();
+                } else {
+                    $error = "An error occurred";
                 }
             }
         }
