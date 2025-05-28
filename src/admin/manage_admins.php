@@ -90,7 +90,12 @@ require_once '../includes/header.php';
             <label for="is_active" class="ml-2 block text-sm text-gray-900">Is Active?</label>
         </div>
         <div>
+            <?php if $admin_to_edit: ?>
             <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"><?php echo $admin_to_edit ? 'Edit' : 'Add' ?> Admin</button>
+            <a href="manage_admins.php" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Cancel</a>
+            <?php else: ?>
+            <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors"><?php echo $admin_to_edit ? 'Edit' : 'Add' ?> Admin</button>
+            <?php endif; ?>
         </div>
     </form>
 
