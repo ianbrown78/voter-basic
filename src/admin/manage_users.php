@@ -7,6 +7,15 @@ require_admin_login();
 $message = '';
 $error = '';
 
+function importVoters($filename) {
+    $csv_file = fopen($filename);
+    fgetcsv($csv_file);
+    
+    while (($line = fgetcsv($csv_file)) !== false) {
+        echo "<script>console.log('Line: " . $line[0] . ' - ' . $line[1] . "' );</script>";
+    }
+}
+
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['add_user'])) {
@@ -37,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error = $_FILES["csv"]["error"];
             } else {
                 $filename = $_FILES["file"]["tmp_name"];
+                importVoters($filename);
             }
         }
     } elseif (isset($_POST['delete_user'])) {
