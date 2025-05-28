@@ -14,19 +14,19 @@ require_once '../includes/header.php'; // Admin header will adjust paths
 
     <div class="grid md:grid-cols-4 gap-6">
         <a href="manage_elections.php" class="block p-6 bg-blue-500 text-white rounded-lg shadow hover:bg-blue-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-mail-open bx-lg'></i> Manage Elections</h2>
+            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-mail-open bx-md'></i> Manage Elections</h2>
             <p>Create, edit, and activate/deactivate elections.</p>
         </a>
         <a href="manage_candidates.php" class="block p-6 bg-green-500 text-white rounded-lg shadow hover:bg-green-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-user-check bx-lg'></i> Manage Candidates</h2>
+            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-user-check bx-md'></i> Manage Candidates</h2>
             <p>Add and edit candidates for each election.</p>
         </a>
         <a href="manage_users.php" class="block p-6 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-community bx-lg'></i> Manage Voters</h2>
+            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-community bx-md'></i> Manage Voters</h2>
             <p>View and manage the list of eligible voters.</p>
         </a>
         <a href="manage_admins.php" class="block p-6 bg-purple-500 text-white rounded-lg shadow hover:bg-pueple-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-user bx-lg'></i> Manage Admins</h2>
+            <h2 class="text-xl font-semibold mb-2 button-icon-align"><i class='bx bx-user bx-md'></i> Manage Admins</h2>
             <p>View and manage the list of administrators.</p>
         </a>
     </div>
