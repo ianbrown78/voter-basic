@@ -22,7 +22,7 @@ require_once '../includes/header.php'; // Admin header will adjust paths
             <p>Add and edit candidates for each election.</p>
         </a>
         <a href="manage_users.php" class="block p-6 bg-yellow-500 text-white rounded-lg shadow hover:bg-yellow-600 transition-colors">
-            <h2 class="text-xl font-semibold mb-2">Manage Voters</h2>
+            <h2 class="text-xl font-semibold mb-2"><i class='bx bx-user bx-lg'></i>  Manage Voters</h2>
             <p>View and manage the list of eligible voters.</p>
         </a>
         <a href="manage_admins.php" class="block p-6 bg-purple-500 text-white rounded-lg shadow hover:bg-pueple-600 transition-colors">
