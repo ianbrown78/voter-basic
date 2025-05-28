@@ -31,14 +31,40 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     } elseif (isset($_POST['add_bulk_users'])) {
-        echo "<script>console.log('Debug File: " . $_FILES['csv']['tmp_name'] . "' );</script>";
         if (isset($_FILES['csv'])) {
             if ($_FILES["csv"]["error"] > 0) {
                 echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
-                // Cycle through each line of the sheet and insert the voters into the table
-                $message = "Successfully uploaded the file";
+                try {
+                    // Get all the voters so we can check for dupes
+                    $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users");
+                    $voters = $stmt_check->execute();
+
+                    $csv = fopen($_FILES['csv']['tmp_name'], 'r');
+                    
+                    // Cycle through each line of the sheet and insert the voters into the table
+                    $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
+                    $stmt->bind_param($email, $name);
+                    
+                    while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
+                        if (count($getData) != 2) {
+                            $error = "Invalid data structure."
+                            exit;
+                        }
+
+                        $email = $getData[0];
+                        $name = $getData[1];
+
+                        $stmt->execute([$email, $name]);
+                    }
+
+                    fclose($csv);
+                    // Tell our users we are good.
+                    $message` = "Successfully inserted bulk users list";
+                } catch (PDOException $e) {
+                    $error = "Database error: " . $e->getMessage();
+                }
             }
         }
     } elseif (isset($_POST['delete_user'])) {
