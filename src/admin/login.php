@@ -28,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['admin_logged_in'] = true;
                 $_SESSION['admin_user_id'] = $admin['id'];
                 $_SESSION['username'] = $admin['username'];
+                $_SESSION['first_name'] = $admin['first_name'];
+                $_SESSION['last_name'] = $admin['last_name'];
                 
                 header('Location: /admin/index.php');
                 exit;
