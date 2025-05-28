@@ -51,7 +51,7 @@ require_once '../includes/header.php';
     <?php if ($message): ?><div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg"><?php echo htmlspecialchars($message); ?></div><?php endif; ?>
     <?php if ($error): ?><div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
 
-    <div class="columns-2md">
+    <div class="columns-2">
         <form action="manage_users.php" method="POST" class="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-4">
             <h2 class="text-xl font-semibold text-gray-700">Add New User</h2>
             <div>
