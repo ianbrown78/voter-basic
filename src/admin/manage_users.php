@@ -72,11 +72,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         echo "<script>console.log('New Name: " . $name . "' );</script>";
                     }
 
-                    // Check that the email address is not already in our system.
-
-                    // Insert the record into the system & increment the new_voter_count
+                    try {
+                        // Insert the record into the system & increment the new_voter_count
+                        $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
+                        $stmt->execute([$email, $name]);
+                        $new_voter_count++;
+                    } catch (PDOException $e) {
+                        $error = "Database error: " . $e->getMessage();
+                    }
 
                     // Return the total new voters inserted.
+                    $message = "Added " . $new_voter_count . " new voters to the system.";
                 }
             }
         }
