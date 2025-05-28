@@ -34,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<script>console.log('Debug File: " . $_FILES['csv']['tmp_name'] . "' );</script>";
         if (isset($_FILES['csv'])) {
             if ($_FILES["csv"]["error"] > 0) {
+                echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
                 $message = "Successfully uploaded the file";
