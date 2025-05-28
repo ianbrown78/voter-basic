@@ -9,3 +9,7 @@ body {
 .container {
     flex: 1;
 }
+
+a i {
+    vertical-align: middle;
+}
