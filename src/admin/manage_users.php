@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
-                $filename = $_FILES["file"]["tmp_name"];
+                $filename = $_FILES["csv"]["tmp_name"];
                 importVoters($filename);
             }
         }
