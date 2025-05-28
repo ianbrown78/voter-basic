@@ -21,9 +21,14 @@ CREATE TABLE IF NOT EXISTS `admins` (
   `id` INT AUTO_INCREMENT PRIMARY KEY,
   `username` VARCHAR(50) NOT NULL UNIQUE,
   `password` VARCHAR(255) NOT NULL,
+  `first_name` VARCHAR(100),
+  `last_name` VARCHAR(100),
   `is_active` BOOLEAN DEFAULT TRUE, -- To easily enable/disable admins
   `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+INSERT INTO `admins` (id, username, password, first_name, last_name, is_active, created_at)
+VALUES (1, 'admin', '$2y$10$5sMC1dLaCMo.X2ZrnMwOYedccicwn.k9RnsvCqfKgGo.nqDPI/MUy', 'Super', 'Admin', TRUE, '2025-05-27 12:52:45');
 
 -- --------------------------------------------------------
 -- Table structure for table `elections`

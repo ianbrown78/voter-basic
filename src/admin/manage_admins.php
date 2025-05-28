@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['add_admin'])) {
         $username = sanitize_input($_POST['username']);
         $password = sanitize_input($_POST['password']);
+        $first_name = sanitize_input($_POST['first_name']);
+        $last_name = sanitize_input($_POST['last_name']);
         $hashed = hash_password($password);
 
         try {
@@ -20,8 +22,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt_check->fetchColumn() > 0) {
                 $error = "Admin with this username already exists.";
             } else {
-                $stmt = $pdo->prepare("INSERT INTO admins (username, password, is_active) VALUES (?, ?, ?)");
-                $stmt->execute([$username, $hashed, TRUE]);
+                $stmt = $pdo->prepare("INSERT INTO admins (username, password, first_name, last_name, is_active) VALUES (?, ?, ?, ?, ?)");
+                $stmt->execute([$username, $hashed, $first_name, $last_name, TRUE]);
                 $message = "Admin added successfully.";
             }
         } catch (PDOException $e) {
@@ -59,6 +61,14 @@ require_once '../includes/header.php';
             <input type="password" name="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
+            <label for="first_name" class="block text-sm font-medium text-gray-700">First Name:</label>
+            <input type="text" name="first_name" id="first_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div>
+            <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name:</label>
+            <input type="text" name="last_name" id="last_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div>
             <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Add Admin</button>
         </div>
     </form>
@@ -70,6 +80,8 @@ require_once '../includes/header.php';
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">ID</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">First Name</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Last Name</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Is Active</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Registered At</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
@@ -83,6 +95,8 @@ require_once '../includes/header.php';
                 <tr>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['id']; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?php echo htmlspecialchars($row['username']); ?></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?php echo htmlspecialchars($row['first_name']); ?></td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?php echo htmlspecialchars($row['last_name']); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['is_active'] ? '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span>' : '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No</span>'; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo date('Y-m-d H:i', strtotime($row['created_at'])); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
