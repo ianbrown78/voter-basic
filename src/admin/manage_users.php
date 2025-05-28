@@ -79,7 +79,7 @@ require_once '../includes/header.php';
             </div>
         </form>
 
-        <form action="manage_users.php" method="POST" class="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-4">
+        <form action="manage_users.php" method="POST" enctype="multipart/form-data" class="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-4">
             <h2 class="text-xl font-semibold text-gray-700">Bulk Add Users</h2>
             <div>
                 <label for="csv" class="block text-sm font-medium text-gray-700">CSV File:</label>
