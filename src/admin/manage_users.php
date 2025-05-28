@@ -66,6 +66,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     }
 
                     // Check the name is set otherwise set a default value
+                    if (empty($name)) {
+                        $parts = explode('@', $email);
+                        $name = "Voter - " . $parts[0];
+                        echo "<script>console.log('New Name: " . $name . "' );</script>";
+                    }
 
                     // Check that the email address is not already in our system.
 
