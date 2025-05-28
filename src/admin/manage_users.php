@@ -8,7 +8,7 @@ $message = '';
 $error = '';
 
 function importVoters($filename) {
-    $csv_file = fopen($filename);
+    $csv_file = fopen($filename, 'r');
     fgetcsv($csv_file);
     
     while (($line = fgetcsv($csv_file)) !== false) {
