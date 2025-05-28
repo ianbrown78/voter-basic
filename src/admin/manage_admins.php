@@ -22,10 +22,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             if ($stmt_check->fetchColumn() > 0) {
                 $error = "Admin with this username already exists.";
             } else {
-                $stmt = $pdo->prepare("INSERT INTO admins (username, password, first_name, last_name, is_active) VALUES (?, ?, ?, ?, ?)");
-                $stmt->execute([$username, $hashed, $first_name, $last_name, TRUE]);
-                $message = "Admin added successfully.";
+                if ($id) { // Edit
+                    $stmt = $pdo->prepare("UPDATE admins SET password = ?, first_name = ?, last_name = ?, is_active = ? WHERE id = ?");
+                    $stmt->execute([$password, $first_name, $last_name, $is_active, $id]);
+                    $message = "Election updated successfully.";
+                } else {
+                    $stmt = $pdo->prepare("INSERT INTO admins (username, password, first_name, last_name, is_active) VALUES (?, ?, ?, ?, ?)");
+                    $stmt->execute([$username, $hashed, $first_name, $last_name, TRUE]);
+                    $message = "Admin added successfully.";
+                }
             }
+            
+            
         } catch (PDOException $e) {
             $error = "Database error: " . $e->getMessage();
         }
@@ -42,6 +50,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+// Fetch election to edit if ID is provided
+$election_to_edit = null;
+if (isset($_GET['edit_id'])) {
+    $edit_id = (int)$_GET['edit_id'];
+    $stmt = $pdo->prepare("SELECT * FROM admins WHERE id = ?");
+    $stmt->execute([$edit_id]);
+    $election_to_edit = $stmt->fetch();
+}
+
 require_once '../includes/header.php';
 ?>
 <div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
@@ -51,7 +68,7 @@ require_once '../includes/header.php';
     <?php if ($error): ?><div class="mb-4 p-3 bg-red-100 text-red-700 rounded-lg"><?php echo htmlspecialchars($error); ?></div><?php endif; ?>
 
     <form action="manage_admins.php" method="POST" class="mb-8 p-6 border border-gray-200 rounded-lg bg-gray-50 space-y-4">
-        <h2 class="text-xl font-semibold text-gray-700">Add New Admin</h2>
+        <h2 class="text-xl font-semibold text-gray-700"><?php echo $election_to_edit ? 'Edit' : 'Add New'; ?> Admin</h2>
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
             <input type="text" name="username" id="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -100,6 +117,7 @@ require_once '../includes/header.php';
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo $row['is_active'] ? '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Yes</span>' : '<span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">No</span>'; ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?php echo date('Y-m-d H:i', strtotime($row['created_at'])); ?></td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                        <a href="manage_admins.php?edit_id=<?php echo $row['id']; ?>" class="text-indigo-600 hover:text-indigo-900 mr-2"><i class="bx bx-edit"></i></a>
                         <form action="manage_admins.php" method="POST" class="inline-block" onsubmit="return confirm('Are you sure you want to delete this admin? This will also delete all their votes.');">
                             <input type="hidden" name="id" value="<?php echo $row['id']; ?>">
                             <button type="submit" name="delete_admin" class="text-red-600 hover:text-red-900"><i class="bx bx-trash-x"></i></button>
