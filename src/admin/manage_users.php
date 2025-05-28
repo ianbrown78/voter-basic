@@ -42,26 +42,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     $csv = fopen($_FILES['csv']['tmp_name'], 'r');
                     
-                    // Cycle through each line of the sheet and insert the voters into the table
-                    // $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
-                    // $stmt->bind_param($email, $name);
-                    
-                    // while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
-                    //     if (count($getData) != 2) {
-                    //         $error = "Invalid data structure."
-                    //         exit;
-                    //     }
+                    // Cycle through each line of the sheet and insert the voters into the table                   
+                    while(($getData = fgetcsv($csv, 10000, ",")) !== FALSE) {
+                        $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
 
-                    //     if (in_array($getData[0], voters)) {
-                    //         $error = "Voter with email " . $getData[0] . "already exists";
-                    //         continue;
-                    //     }
+                        if (count($getData) != 2) {
+                            $error = "Invalid data structure."
+                            exit;
+                        }
 
-                    //     // $email = $getData[0];
-                    //     // $name = $getData[1];
+                        if (in_array($getData[0], voters)) {
+                            $error = "Voter with email " . $getData[0] . "already exists";
+                            continue;
+                        }
 
-                    //     // $stmt->execute([$email, $name]);
-                    // }
+                        // $email = $getData[0];
+                        // $name = $getData[1];
+
+                        // $stmt->execute([$email, $name]);
+                    }
 
                     fclose($csv);
                     // Tell our users we are good.
