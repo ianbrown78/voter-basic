@@ -8,6 +8,7 @@ $message = '';
 $error = '';
 
 function importVoters($filename) {
+    $new_voter_count = 0;
     if (empty($filename)) {
         $error = "CSV Filename provided does not exist: " . $filename;
         return;
@@ -15,9 +16,23 @@ function importVoters($filename) {
 
     $csv_file = fopen($filename, 'r');
     fgetcsv($csv_file);
+
+    $voters = $pdo->prepare("SELECT * FROM users")->execute();
     
     while (($line = fgetcsv($csv_file)) !== false) {
         echo "<script>console.log('Line: " . $line[0] . ' - ' . $line[1] . "' );</script>";
+
+        // Check the email address is of a valid format
+        if (!filter_var($line[0], FILTER_VALIDATE_EMAIL)) {
+            error = "Invalid email address for " . $line[1];
+            continue;
+        }
+
+        // Check that the email address is not already in our system.
+
+        // Insert the record into the system & increment the new_voter_count
+
+        // Return the total new voters inserted.
     }
 }
 
