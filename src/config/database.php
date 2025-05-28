@@ -12,56 +12,56 @@ try {
     die("ERROR: Could not connect. " . $e->getMessage());
 }
 
-function importCSV($filename) {
-    // Open the CSV file
-    $file = fopen($filename, "r");
+// function importCSV($filename) {
+//     // Open the CSV file
+//     $file = fopen($filename, "r");
     
-    // Skip the header row (if it exists)
-    fgetcsv($file, 10000, ",");  // Adjust delimiter if needed
+//     // Skip the header row (if it exists)
+//     fgetcsv($file, 10000, ",");  // Adjust delimiter if needed
     
-    // Prepare the SQL query
-    $sql = "INSERT INTO users (email, name) VALUES (?, ?)";
-    $stmt = $conn->prepare($sql);
+//     // Prepare the SQL query
+//     $sql = "INSERT INTO users (email, name) VALUES (?, ?)";
+//     $stmt = $conn->prepare($sql);
     
-    if ($stmt === false) {
-        die("Error preparing statement: " . $conn->error); // Handle prepare error
-    }
+//     if ($stmt === false) {
+//         die("Error preparing statement: " . $conn->error); // Handle prepare error
+//     }
     
-    // Bind parameters
-    $stmt->bind_param($email, $name);
+//     // Bind parameters
+//     $stmt->bind_param($email, $name);
 
-    // Get all the voters so we can check for dupes
-    $voters = $pdo->prepare("SELECT email FROM users")->execute();
-    var_dump($voters);
+//     // Get all the voters so we can check for dupes
+//     $voters = $pdo->prepare("SELECT email FROM users")->execute();
+//     var_dump($voters);
     
-    while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
-        // Validate data (example validation)
-        if (count($getData) != 2) {
-            error_log("Invalid CSV row: " . implode(",", $getData));
-            continue; // Skip to the next row
-        }
-        // if (in_array($getData[0], voters)) {
-        //     $error = "Voter with email " . $getData[0] . "already exists";
-        //     continue;
-        // }
+//     while (($getData = fgetcsv($file, 10000, ",")) !== FALSE) {
+//         // Validate data (example validation)
+//         if (count($getData) != 2) {
+//             error_log("Invalid CSV row: " . implode(",", $getData));
+//             continue; // Skip to the next row
+//         }
+//         // if (in_array($getData[0], voters)) {
+//         //     $error = "Voter with email " . $getData[0] . "already exists";
+//         //     continue;
+//         // }
         
-        // Assign values
-        $email = $getData[0];
-        $name = $getData[1];
+//         // Assign values
+//         $email = $getData[0];
+//         $name = $getData[1];
 
-        $stmt->
+//         $stmt->
         
-        // Execute the query
-        // if (!$stmt->execute()) {
-        //     error_log("Error inserting row: " . $stmt->error);
-        //     return false;
-        // }
-    }
+//         // Execute the query
+//         // if (!$stmt->execute()) {
+//         //     error_log("Error inserting row: " . $stmt->error);
+//         //     return false;
+//         // }
+//     }
     
-    // Close the statement and connection
-    $stmt->close();
-    fclose($file);
+//     // Close the statement and connection
+//     $stmt->close();
+//     fclose($file);
 
-    return true
-}
+//     return true
+// }
 ?>
