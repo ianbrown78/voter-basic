@@ -32,14 +32,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     } elseif (isset($_POST['add_bulk_users'])) {
         echo "<script>console.log('Debug File: " . $_FILES['csv']['tmp_name'] . "' );</script>";
-        var_dump($_FILES); die();
         if (isset($_FILES['csv'])) {
             if ($_FILES["csv"]["error"] > 0) {
                 echo "<script>console.log('Debug File Error: " . $_FILES['csv']['error'] . "' );</script>";
                 $error = $_FILES["csv"]["error"];
             } else {
-                $message = "Successfully uploaded the file";
                 // Cycle through each line of the sheet and insert the voters into the table
+                $message = "Successfully uploaded the file";
             }
         }
     } elseif (isset($_POST['delete_user'])) {
