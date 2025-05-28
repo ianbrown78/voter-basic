@@ -31,6 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             }
         }
     } elseif (isset($_POST['add_bulk_users'])) {
+        echo $_FILES['csv']['tmp_name'];
         if (isset($_FILES['csv'])) {
             if ($_FILES["csv"]["error"] > 0) {
                 $error = $_FILES["csv"]["error"];
