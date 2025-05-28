@@ -38,14 +38,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             } else {
                 try {
                     // Get all the voters so we can check for dupes
-                    $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users");
-                    $voters = $stmt_check->execute();
+                    $voters = $pdo->prepare("SELECT email FROM users")->execute();
 
                     $csv = fopen($_FILES['csv']['tmp_name'], 'r');
                     
-                    // Cycle through each line of the sheet and insert the voters into the table
-                    $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
-                    $stmt->bind_param($email, $name);
+                    // // Cycle through each line of the sheet and insert the voters into the table
+                    // $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
+                    // $stmt->bind_param($email, $name);
                     
                     while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
                         if (count($getData) != 2) {
@@ -53,10 +52,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             exit;
                         }
 
-                        $email = $getData[0];
-                        $name = $getData[1];
+                        if (in_array($getData[0], voters)) {
+                            $error = "Voter with email " . $getData[0] . "already exists";
+                            continue;
+                        }
 
-                        $stmt->execute([$email, $name]);
+                        // $email = $getData[0];
+                        // $name = $getData[1];
+
+                        // $stmt->execute([$email, $name]);
                     }
 
                     fclose($csv);
