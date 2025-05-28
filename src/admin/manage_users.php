@@ -41,6 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $voters = $pdo->prepare("SELECT email FROM users")->execute();
 
                     $csv = fopen($_FILES['csv']['tmp_name'], 'r');
+                    var_dump($csv);
                     
                     // // Cycle through each line of the sheet and insert the voters into the table
                     // $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
