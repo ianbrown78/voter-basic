@@ -43,8 +43,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $csv = fopen($_FILES['csv']['tmp_name'], 'r');
                     
                     // Cycle through each line of the sheet and insert the voters into the table
-                    $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
-                    $stmt->bind_param($email, $name);
+                    // $stmt = $pdo->prepare("INSERT INTO users (email, name) VALUES (?, ?)");
+                    // $stmt->bind_param($email, $name);
                     
                     // while(($getData = fgetcsv($csv, 100000, ",")) !== FALSE) {
                     //     if (count($getData) != 2) {
