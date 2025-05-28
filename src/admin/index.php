@@ -7,7 +7,7 @@ require_admin_login(); // Ensure admin is logged in
 require_once '../includes/header.php'; // Admin header will adjust paths
 ?>
 
-<div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+<div class="bg-white p-8 rounded-lg shadow-lg max-w-8xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Admin Dashboard</h1>
     <p class="text-lg text-gray-700 mb-4">Welcome, <?php echo htmlspecialchars($_SESSION['admin_username']); ?>!</p>
     <p class="text-gray-600 mb-6">From here you can manage elections, candidates, and users.</p>

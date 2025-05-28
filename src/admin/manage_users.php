@@ -45,7 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 require_once '../includes/header.php';
 ?>
-<div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+<div class="bg-white p-8 rounded-lg shadow-lg max-w-8xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Manage Users (Voters)</h1>
 
     <?php if ($message): ?><div class="mb-4 p-3 bg-green-100 text-green-700 rounded-lg"><?php echo htmlspecialchars($message); ?></div><?php endif; ?>

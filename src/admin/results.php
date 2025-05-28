@@ -13,7 +13,7 @@ require_once '../includes/header.php';
 $election_id_filter = isset($_GET['election_id']) ? (int)$_GET['election_id'] : null;
 ?>
 
-<div class="bg-white p-8 rounded-lg shadow-lg max-w-4xl mx-auto">
+<div class="bg-white p-8 rounded-lg shadow-lg max-w-8xl mx-auto">
     <h1 class="text-3xl font-bold mb-6 text-center text-blue-600">Election Results</h1>
 
     <form method="GET" action="results.php" class="mb-6 flex flex-col sm:flex-row gap-4 items-end">
