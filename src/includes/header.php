@@ -18,6 +18,7 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
     <title>Voting System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/fonts/transformations.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="<?php echo $basePath; ?>css/style.css">
 </head>
 <body class="bg-gray-100 text-gray-800 font-sans min-h-screen">
