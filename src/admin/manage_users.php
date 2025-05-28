@@ -16,15 +16,23 @@ function importVoters($filename) {
 
     $csv_file = fopen($filename, 'r');
     fgetcsv($csv_file);
-
-    $voters = $pdo->prepare("SELECT * FROM users")->execute();
     
     while (($line = fgetcsv($csv_file)) !== false) {
-        echo "<script>console.log('Line: " . $line[0] . ' - ' . $line[1] . "' );</script>";
+        $email = $line[0];
+        $name = $line[1];
+        echo "<script>console.log('Line: " . $email . ' - ' . $name . "' );</script>";
 
         // Check the email address is of a valid format
-        if (!filter_var($line[0], FILTER_VALIDATE_EMAIL)) {
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
             $error = "Invalid email address for " . $line[1];
+            continue;
+        }
+
+        // Check the voter doesn't already exist
+        $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+        $stmt_check->execute($email);
+        if ($stmt_check->fetchColumn() > 0) {
+            // User already exists, so don't add them again.
             continue;
         }
 
