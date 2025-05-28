@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                     // Check the voter doesn't already exist
                     $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
-                    $stmt_check->execute($email);
+                    $stmt_check->execute([$email]);
                     if ($stmt_check->fetchColumn() > 0) {
                         // User already exists, so don't add them again.
                         continue;
