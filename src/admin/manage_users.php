@@ -24,9 +24,11 @@ function importVoters($filename) {
 
         // Check the email address is of a valid format
         if (!filter_var($line[0], FILTER_VALIDATE_EMAIL)) {
-            error = "Invalid email address for " . $line[1];
+            $error = "Invalid email address for " . $line[1];
             continue;
         }
+
+        // Check the name is set otherwise set a default value
 
         // Check that the email address is not already in our system.
 
