@@ -71,19 +71,23 @@ require_once '../includes/header.php';
         <h2 class="text-xl font-semibold text-gray-700"><?php echo $election_to_edit ? 'Edit' : 'Add New'; ?> Admin</h2>
         <div>
             <label for="username" class="block text-sm font-medium text-gray-700">Username:</label>
-            <input type="text" name="username" id="username" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="username" id="username" value="<?php echo htmlspecialchars($election_to_edit['username'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="password" class="block text-sm font-medium text-gray-700">Password:</label>
-            <input type="password" name="password" id="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="password" name="password" id="password" value="<?php echo htmlspecialchars($election_to_edit['password'] ?? ''); ?>" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="first_name" class="block text-sm font-medium text-gray-700">First Name:</label>
-            <input type="text" name="first_name" id="first_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="first_name" id="first_name" value="<?php echo htmlspecialchars($election_to_edit['first_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         </div>
         <div>
             <label for="last_name" class="block text-sm font-medium text-gray-700">Last Name:</label>
-            <input type="text" name="last_name" id="last_name" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <input type="text" name="last_name" id="last_name" value="<?php echo htmlspecialchars($election_to_edit['last_name'] ?? ''); ?>" required class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        </div>
+        <div class="flex items-center">
+            <input type="checkbox" name="is_active" id="is_active" value="1" <?php echo ($election_to_edit && $election_to_edit['is_active']) || !$election_to_edit ? 'checked' : ''; ?> class="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
+            <label for="is_active" class="ml-2 block text-sm text-gray-900">Is Active?</label>
         </div>
         <div>
             <button type="submit" name="add_admin" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition-colors">Add Admin</button>
