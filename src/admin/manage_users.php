@@ -7,45 +7,6 @@ require_admin_login();
 $message = '';
 $error = '';
 
-function importVoters($filename) {
-    $new_voter_count = 0;
-    if (empty($filename)) {
-        $error = "CSV Filename provided does not exist: " . $filename;
-        return;
-    }
-
-    $csv_file = fopen($filename, 'r');
-    fgetcsv($csv_file);
-    
-    while (($line = fgetcsv($csv_file)) !== false) {
-        $email = $line[0];
-        $name = $line[1];
-        echo "<script>console.log('Line: " . $email . ' - ' . $name . "' );</script>";
-
-        // Check the email address is of a valid format
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $error = "Invalid email address for " . $line[1];
-            continue;
-        }
-
-        // Check the voter doesn't already exist
-        $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
-        $stmt_check->execute($email);
-        if ($stmt_check->fetchColumn() > 0) {
-            // User already exists, so don't add them again.
-            continue;
-        }
-
-        // Check the name is set otherwise set a default value
-
-        // Check that the email address is not already in our system.
-
-        // Insert the record into the system & increment the new_voter_count
-
-        // Return the total new voters inserted.
-    }
-}
-
 // Handle form submissions
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['add_user'])) {
@@ -76,7 +37,42 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $error = $_FILES["csv"]["error"];
             } else {
                 $filename = $_FILES["csv"]["tmp_name"];
-                importVoters($filename);
+                $new_voter_count = 0;
+                if (empty($filename)) {
+                    $error = "CSV Filename provided does not exist: " . $filename;
+                    return;
+                }
+
+                $csv_file = fopen($filename, 'r');
+                fgetcsv($csv_file);
+                
+                while (($line = fgetcsv($csv_file)) !== false) {
+                    $email = $line[0];
+                    $name = $line[1];
+                    echo "<script>console.log('Line: " . $email . ' - ' . $name . "' );</script>";
+
+                    // Check the email address is of a valid format
+                    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                        $error = "Invalid email address for " . $line[1];
+                        continue;
+                    }
+
+                    // Check the voter doesn't already exist
+                    $stmt_check = $pdo->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
+                    $stmt_check->execute($email);
+                    if ($stmt_check->fetchColumn() > 0) {
+                        // User already exists, so don't add them again.
+                        continue;
+                    }
+
+                    // Check the name is set otherwise set a default value
+
+                    // Check that the email address is not already in our system.
+
+                    // Insert the record into the system & increment the new_voter_count
+
+                    // Return the total new voters inserted.
+                }
             }
         }
     } elseif (isset($_POST['delete_user'])) {
