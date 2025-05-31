@@ -13,3 +13,8 @@ body {
 .button-icon-align i {
     vertical-align: middle;
 }
+
+a.active {
+    font-weight: 500;
+    text-decoration: underline;
+}
