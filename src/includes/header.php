@@ -36,7 +36,7 @@ $active_page = $active_page[1];
                     </a>
                 <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>!</span>
-                    <a href="index.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 active:text-blue-300 px-2 active' : 'hover:text-blue-200 px-2'?>">Dashboard</a>
+                    <a href="index.php" class="<?php echo $active_page == 'manage_admins.php' ? 'hover:text-blue-200 active:text-blue-300 px-2 active' : 'hover:text-blue-200 px-2'?>">Dashboard</a>
                     <a href="manage_admins.php" class="<?php echo $active_page == 'manage_admins.php' ? 'hover:text-blue-200 active:text-blue-300 px-2 active' : 'hover:text-blue-200 px-2 active:text-blue-300'?>">Admins</a>
                     <a href="manage_elections.php" class="<?php echo $active_page == 'manage_admins.php' ? 'hover:text-blue-200 active:text-blue-300 px-2 active' : 'hover:text-blue-200 px-2 active:text-blue-300'?>">Elections</a>
                     <a href="manage_candidates.php" class="<?php echo $active_page == 'manage_admins.php' ? 'hover:text-blue-200 active:text-blue-300 px-2 active' : 'hover:text-blue-200 px-2 active:text-blue-300'?>">Candidates</a>
