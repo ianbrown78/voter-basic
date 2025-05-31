@@ -9,6 +9,9 @@ $basePath = '';
 if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SELF'], '/public/') !== false) {
     $basePath = '../'; // Go up one level for admin pages
 }
+
+$active_page = explode('/', $_SERVER['SERVER_NAME']);
+$active_page = $active_page[1];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,11 +36,11 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
                     </a>
                 <?php elseif (is_admin_logged_in() && strpos($_SERVER['PHP_SELF'], '/admin/') !== false ): ?>
                     <span class="mr-4">Welcome, <?php echo htmlspecialchars($_SESSION['first_name'] . ' ' . $_SESSION['last_name']); ?>!</span>
-                    <a href="index.php" class="hover:text-blue-200 px-2">Dashboard</a>
-                    <a href="manage_admins.php" class="hover:text-blue-200 px-2">Admins</a>
-                    <a href="manage_elections.php" class="hover:text-blue-200 px-2">Elections</a>
-                    <a href="manage_candidates.php" class="hover:text-blue-200 px-2">Candidates</a>
-                    <a href="manage_users.php" class="hover:text-blue-200 px-2">Voters</a>
+                    <a href="index.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 px-2 active' : 'hover:text-blue-200 px-2'?>">Dashboard</a>
+                    <a href="manage_admins.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 px-2 active' : 'hover:text-blue-200 px-2'?>">Admins</a>
+                    <a href="manage_elections.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 px-2 active' : 'hover:text-blue-200 px-2'?>">Elections</a>
+                    <a href="manage_candidates.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 px-2 active' : 'hover:text-blue-200 px-2'?>">Candidates</a>
+                    <a href="manage_users.php" class="<?php $active_page == 'manage_admins.php' ? 'hover:text-blue-200 px-2 active' : 'hover:text-blue-200 px-2'?>">Voters</a>
                     <a href="<?php echo $basePath; ?>admin/logout.php" class="button-icon-align bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
                         <i class="bx bx-door-open"></i> Logout
                     </a>
