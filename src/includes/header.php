@@ -10,9 +10,8 @@ if (strpos($_SERVER['PHP_SELF'], '/admin/') !== false || strpos($_SERVER['PHP_SE
     $basePath = '../'; // Go up one level for admin pages
 }
 
-$active_page = explode('/', $_SERVER['SCRIPT_NAME']);
+$active_page = end(explode('/', $_SERVER['SCRIPT_NAME']));
 echo "<script>console.log('Debug Path: " . $_SERVER['SCRIPT_NAME'] . "' );</script>";
-$active_page = $active_page[3];
 echo "<script>console.log('Debug Script: " . $active_page . "' );</script>";
 ?>
 <!DOCTYPE html>
